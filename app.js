@@ -18,11 +18,17 @@ const notFoundMiddleware = require("./middleware/not-found")
 const errorHandlerMiddleware = require("./middleware/error-handler")
 
 // extra packages
+app.set("trust proxy", 1)
+app.use(
+  rateLimiter({
+    windowMs: 15 * 60 * 1000, //15min
+    max: 100, //limit each ip to 100 request per windows
+  })
+)
 app.use(express.json())
 app.use(helmet())
 app.use(cors())
 app.use(xss())
-app.use(rateLimiter)
 
 // routes
 app.get("/", (req, res) => {
