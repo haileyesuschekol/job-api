@@ -1,5 +1,6 @@
 require("dotenv").config()
 require("express-async-errors")
+const path = require("path")
 const express = require("express")
 const app = express()
 const connectDB = require("./db/connect")
@@ -25,15 +26,21 @@ app.use(
     max: 100, //limit each ip to 100 request per windows
   })
 )
+
 app.use(express.json())
 app.use(helmet())
 app.use(cors())
 app.use(xss())
+app.use(express.static(path.join(__dirname, "public")))
 
-// routes
+// Route to serve the HTML file
 app.get("/", (req, res) => {
-  res.send("jobs api")
+  res.sendFile(path.join(__dirname, "public", "index.html"))
 })
+// routes
+// app.get("/", (req, res) => {
+//   res.status(200)
+// })
 
 //routes
 app.use("/api/v1/auth", authRouter)
