@@ -17,6 +17,10 @@ const rateLimiter = require("express-rate-limit")
 const notFoundMiddleware = require("./middleware/not-found")
 const errorHandlerMiddleware = require("./middleware/error-handler")
 
+app.get("/", (req, res) => {
+  res.send("Job Api Backend")
+})
+
 // extra packages
 app.set("trust proxy", 1)
 app.use(
