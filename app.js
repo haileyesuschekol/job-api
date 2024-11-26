@@ -1,6 +1,5 @@
 require("dotenv").config()
 require("express-async-errors")
-const path = require("path")
 const express = require("express")
 const app = express()
 const connectDB = require("./db/connect")
@@ -31,11 +30,10 @@ app.use(express.json())
 app.use(helmet())
 app.use(cors())
 app.use(xss())
-app.use(express.static(path.join(__dirname, "public")))
 
 // Route to serve the HTML file
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "public", "index.html"))
+  res.send("JOB-API")
 })
 // routes
 // app.get("/", (req, res) => {

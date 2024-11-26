@@ -1,3 +1,5 @@
+![My Image](./image.png)
+
 #### Setup
 
 ```bash
