@@ -1,4 +1,4 @@
-![My Image](./image.png)
+![My Image](./public/image.png)
 
 #### Setup
 
